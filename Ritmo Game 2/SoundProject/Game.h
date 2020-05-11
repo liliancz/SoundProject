@@ -11,8 +11,6 @@ public:
 	Game();
 	~Game();
 
-	void text(SDL_Texture* font_texture, int score, int multiply);
-	void print_text(SDL_Texture* font_texture, char text[100], float text_x, float text_y, int random_text_size);
 	void Init(const char* title, int xpos, int ypos, int width, int height);
 	void handleEvents();
 	void update();

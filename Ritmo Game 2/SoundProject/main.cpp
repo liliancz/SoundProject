@@ -3,7 +3,7 @@
 #include <iostream>
 #include "Game.h"
 #include <time.h>
-#include "SDL_ttf.h"
+#include "SDL2_ttf-2.0.15/include/SDL_ttf.h"
 
 
 const int SCREEN_HEIGHT = 600;

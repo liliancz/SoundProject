@@ -2,10 +2,10 @@
 #include "Object.h"
 #include "TextureM.h"
 #include "Collision.h"
+#include "DrawText.h"
 #include <stdlib.h>     /* srand, rand */
 #include "SDL_ttf.h"
 #include "SDL2-2.0.12/include/SDL.h"
-
 
 
 const int max_arrows = 100;
@@ -17,6 +17,8 @@ Object* S_marquee;
 Object* D_marquee;
 Object* arrow;
 
+const int max_text = 2;
+DrawText* text[max_text];
 
 bool A_pressed = false;
 bool S_pressed = false;
@@ -28,6 +30,8 @@ Game::~Game() {}
 
 void Game::Init(const char* title, int xpos, int ypos, int width, int height) {
 
+	
+	text[0]->Init();
 	
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
@@ -55,6 +59,11 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height) {
 	S_marquee = new Object("assets/Marquee_Music_Note.png", renderer, 150, 400);
 
 	arrow = new Object("assets/arrow_1.png", renderer, 50, 400);
+
+	
+	text[0] = new DrawText(renderer, "Hola", 50, 100);
+
+	
 
 
 };
@@ -128,6 +137,7 @@ void Game::update() {
 	}
 
 	arrow->uniquepos(50, 400);
+	text[0]->Update();
 
 
 };
@@ -144,8 +154,13 @@ void Game::render() {
 	}
 	if (A_pressed == true) A_marquee->Render();
 	if (S_pressed == true) S_marquee->Render();
-	arrow->Render();
 	
+	arrow->Render();
+	text[0]->Render();
+
+
+
+
 	SDL_RenderPresent(renderer);
 	//reset pressed	
 	A_pressed = false;
@@ -154,6 +169,7 @@ void Game::render() {
 };
 void Game::clean() {
 	
+	text[0]->Clean();
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();

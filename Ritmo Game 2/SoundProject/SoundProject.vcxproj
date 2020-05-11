@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="DrawText.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -27,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collision.h" />
+    <ClInclude Include="DrawText.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="TextureM.h" />
@@ -84,6 +86,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\aleja\Documents\GitHub\SoundProject\Ritmo Game 2\SoundProject\SDL2_image-2.0.3\include;C:\Users\aleja\Documents\GitHub\SoundProject\Ritmo Game 2\SoundProject\SDL2_mixer-2.0.4\include;C:\Users\aleja\Documents\GitHub\SoundProject\Ritmo Game 2\SoundProject\SDL2_ttf-2.0.15\include;C:\Users\aleja\Documents\GitHub\SoundProject\Ritmo Game 2\SoundProject\SDL2-2.0.12\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -102,11 +105,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\aleja\Documents\GitHub\SoundProject\Ritmo Game 2\SoundProject\SDL2_image-2.0.3\include;C:\Users\aleja\Documents\GitHub\SoundProject\Ritmo Game 2\SoundProject\SDL2_mixer-2.0.4\include;C:\Users\aleja\Documents\GitHub\SoundProject\Ritmo Game 2\SoundProject\SDL2_ttf-2.0.15\include;C:\Users\aleja\Documents\GitHub\SoundProject\Ritmo Game 2\SoundProject\SDL2-2.0.12\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Winmm.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\aleja\Documents\GitHub\SoundProject\Ritmo Game 2\SoundProject\SDL2_image-2.0.3\lib\x86;C:\Users\aleja\Documents\GitHub\SoundProject\Ritmo Game 2\SoundProject\SDL2_mixer-2.0.4\lib\x86;C:\Users\aleja\Documents\GitHub\SoundProject\Ritmo Game 2\SoundProject\SDL2_ttf-2.0.15\lib\x86;C:\Users\aleja\Documents\GitHub\SoundProject\Ritmo Game 2\SoundProject\SDL2-2.0.12\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
