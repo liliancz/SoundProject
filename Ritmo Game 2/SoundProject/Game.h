@@ -13,21 +13,22 @@ public:
 
 	void Init(const char* title, int xpos, int ypos, int width, int height);
 	void handleEvents();
-	void update();
+	void update(float t);
 	void spawnobjectA();
 	void spawnobjectS();
+	void spawnobjectK();
+	void spawnobjectL();
 	void render();
 	void clean();
 	//void drawRect();
-	int timetospawn = 0;
-
+	
 	bool Running(){ return isRunning; };
 
 	bool randombool();
 
 	//SDL_Texture* Texture;
 	//SDL_Rect dRect;
-	int spawncounter = 0;
+
 private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;

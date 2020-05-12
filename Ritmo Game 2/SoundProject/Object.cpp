@@ -26,13 +26,13 @@ void Object::resetpos(int x, int y) {
 
 
 
-void Object::Update() {
+void Object::Update(float t) {
 	
 	ypos++;
 	dRect.x = xpos;
 	dRect.h = 64;
 	dRect.w = 64;
-	dRect.y = ypos;
+	dRect.y = ypos*t;
 };
 
 void Object::Render() {

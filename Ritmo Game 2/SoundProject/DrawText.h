@@ -9,16 +9,16 @@
 class DrawText
 {
 public:
-	DrawText(SDL_Renderer* ren, const char* TEXT, int xpos, int ypos);
+	DrawText(SDL_Renderer* ren, const char* TEXT, int xpos, int ypos, int size);
 	~DrawText();
-	void Init();
+
 	void Render();
 	void Update();
 	void Clean();
 	
 
-
-	TTF_Font* font = TTF_OpenFont("arial.ttf", 25);
+private:
+	TTF_Font* font;
 	SDL_Color color = { 255, 255, 3 };
 	SDL_Surface* text_surface;
 	SDL_Texture* text_texture;

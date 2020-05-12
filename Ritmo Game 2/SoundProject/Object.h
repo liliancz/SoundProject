@@ -8,7 +8,7 @@ class Object
 public:
 	Object(const char* texturesheet, SDL_Renderer* ren, int x, int y);
 	~Object();
-	void Update();
+	void Update(float t);
 	void uniquepos(int x, int y);
 	void resetpos(int x, int y);
 	void Render();
