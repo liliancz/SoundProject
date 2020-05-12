@@ -20,18 +20,20 @@ public:
 	void spawnobjectL();
 	void render();
 	void clean();
+	void play();
 	//void drawRect();
 	
 	bool Running(){ return isRunning; };
+
 
 	bool randombool();
 
 	//SDL_Texture* Texture;
 	//SDL_Rect dRect;
-
+	SDL_Renderer* renderer;
 private:
 	SDL_Window* window;
-	SDL_Renderer* renderer;
+	
 
 	bool isRunning;
 };

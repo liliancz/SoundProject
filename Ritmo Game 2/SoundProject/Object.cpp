@@ -1,5 +1,6 @@
 #include "Object.h"
 #include "TextureM.h"
+#include "Constants.h"
 
 Object::Object(const char* texturesheet, SDL_Renderer* ren, int x, int y) {
 
@@ -24,7 +25,12 @@ void Object::resetpos(int x, int y) {
 	ypos = y;
 };
 
-
+void Object::Fullscreen() {
+	dRect.x = 0;
+	dRect.y = 0;
+	dRect.h = SCREEN_HEIGHT;
+	dRect.w = SCREEN_WIDTH;
+};
 
 void Object::Update(float t) {
 	

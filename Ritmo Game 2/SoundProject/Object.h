@@ -11,6 +11,7 @@ public:
 	void Update(float t);
 	void uniquepos(int x, int y);
 	void resetpos(int x, int y);
+	void Fullscreen();
 	void Render();
 	bool activate = false;
 	SDL_Rect dRect;

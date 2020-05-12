@@ -1,4 +1,4 @@
-#pragma warning(disable : 4996).
+#pragma warning(disable : 4996)
 #include "Game.h"
 #include "Object.h"
 #include "TextureM.h"
@@ -26,6 +26,7 @@ Object* A_marquee;
 Object* S_marquee;
 Object* K_marquee;
 Object* L_marquee;
+Object* bg;
 
 Object* arrow;
 
@@ -33,6 +34,9 @@ Object* Red_square;
 Object* Blue_square;
 Object* Purple_square;
 Object* Green_square;
+
+char* text1[100];
+
 
 const int max_text = 5;
 DrawText* text[max_text];
@@ -43,7 +47,7 @@ bool L_pressed = false;
 bool K_pressed = false;
 
 MusicManager* song;
-MusicManager* wrongkey;
+MusicManagerChunk* wrongkey;
 
 ScoreSystem* GameScore; // worst score system ever made by me
 
@@ -84,24 +88,33 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height) {
 		
 	}
 
-	Purple_square = new Object("assets/purple_square.png", renderer, C1, 400);
-	Blue_square = new Object("assets/blue_square.png", renderer, C2, 400);
-	Red_square = new Object("assets/red_square.png", renderer, C3, 400);
-	Green_square = new Object("assets/green_square.png", renderer, C4, 400);
-
-
-	A_marquee = new Object("assets/Marquee_Music_Note.png", renderer, C1, 400);
-	S_marquee = new Object("assets/Marquee_Music_Note.png", renderer, C2, 400);
-	K_marquee = new Object("assets/Marquee_Music_Note.png", renderer, C3, 400);
-	L_marquee = new Object("assets/Marquee_Music_Note.png", renderer, C4, 400);
-
-	arrow = new Object("assets/arrow_1.png", renderer, 36, 400);
-	text[0] = new DrawText(renderer, "Good", SCREEN_WIDTH/2-50, SCREEN_WIDTH/2, 50);
-	song = new MusicManager("assets/Borgore_Tetris.wav");
-	song->pause_music();
 	
+	bg = new Object("assets/bg_starts.png", renderer, 0, 0);
+	Purple_square = new Object("assets/purple_square.png", renderer, C1, R1);
+	Blue_square = new Object("assets/blue_square.png", renderer, C2, R1);
+	Red_square = new Object("assets/red_square.png", renderer, C3, R1);
+	Green_square = new Object("assets/green_square.png", renderer, C4, R1);
 
+
+	A_marquee = new Object("assets/Marquee_Music_Note.png", renderer, C1, R1);
+	S_marquee = new Object("assets/Marquee_Music_Note.png", renderer, C2, R1);
+	K_marquee = new Object("assets/Marquee_Music_Note.png", renderer, C3, R1);
+	L_marquee = new Object("assets/Marquee_Music_Note.png", renderer, C4, R1);
+
+	
+	text[0] = new DrawText(renderer, "Good", SCREEN_WIDTH/2-50, SCREEN_WIDTH/2, 50);
+	wrongkey = new MusicManagerChunk("assets/scratch.wav");
+	
+	song = new MusicManager("assets/Borgore_Tetris.wav");
+	
 };
+
+void Game::play() {
+
+	song->pause_music();
+};
+
+
 void Game::handleEvents() {
 	SDL_Event event;
 	SDL_PollEvent(&event);
@@ -129,13 +142,16 @@ void Game::handleEvents() {
 	default:
 		break;
 	}
+
+	
 };
 void Game::update(float t) {
 	
-	Purple_square->uniquepos(C1, 400);
-	Blue_square->uniquepos(C2, 400);
-	Green_square->uniquepos(C3, 400);
-	Red_square->uniquepos(C4, 400);
+	bg->Fullscreen();
+	Purple_square->uniquepos(C1, R1);
+	Blue_square->uniquepos(C2, R1);
+	Green_square->uniquepos(C3, R1);
+	Red_square->uniquepos(C4, R1);
 
 	for (int i = 0; i < max_arrows; i++)
 	{
@@ -158,7 +174,7 @@ void Game::update(float t) {
 	}
 	if (A_pressed == true)
 	{
-		A_marquee->uniquepos(C1, 400);
+		A_marquee->uniquepos(C1, R1);
 		for (int i = 0; i < max_arrows; i++)
 		{
 			if (Collision::AABB(A_marquee->dRect, A_KEY[i]->dRect) == true)
@@ -169,13 +185,13 @@ void Game::update(float t) {
 			}
 			else
 			{
-				
+				//wrongkey->play_chunk();
 			}
 		}
 	}
 	if (S_pressed == true)
 	{
-		S_marquee->uniquepos(C2, 400);
+		S_marquee->uniquepos(C2, R1);
 		for (int i = 0; i < max_arrows; i++)
 		{
 			if (Collision::AABB(S_marquee->dRect, S_KEY[i]->dRect) == true)
@@ -186,13 +202,13 @@ void Game::update(float t) {
 			}
 			else
 			{
-	
+				//wrongkey->play_chunk();
 			}
 		}
 	}
 	if (K_pressed == true)
 	{
-		K_marquee->uniquepos(C3, 400);
+		K_marquee->uniquepos(C3, R1);
 		for (int i = 0; i < max_arrows; i++)
 		{
 			if (Collision::AABB(K_marquee->dRect, K_KEY[i]->dRect) == true)
@@ -203,13 +219,13 @@ void Game::update(float t) {
 			}
 			else
 			{
-
+				//wrongkey->play_chunk();
 			}
 		}
 	}
 	if (L_pressed == true)
 	{
-		L_marquee->uniquepos(C4, 400);
+		L_marquee->uniquepos(C4, R1);
 		for (int i = 0; i < max_arrows; i++)
 		{
 			if (Collision::AABB(L_marquee->dRect, L_KEY[i]->dRect) == true)
@@ -220,12 +236,12 @@ void Game::update(float t) {
 			}
 			else
 			{
-
+			//	wrongkey->play_chunk();
 			}
 		}
 	}
 
-	arrow->uniquepos(36, 400);
+
 	text[0]->Update();
 
 
@@ -233,7 +249,7 @@ void Game::update(float t) {
 void Game::render() {
 
 	SDL_RenderClear(renderer);
-
+	bg->Render();
 	Purple_square->Render();
 	Red_square->Render();
 	Blue_square->Render();
@@ -254,8 +270,8 @@ void Game::render() {
 	if (K_pressed == true) K_marquee->Render();
 	if (L_pressed == true) L_marquee->Render();
 
-	arrow->Render();
-	text[0]->Render();
+
+	//text[0]->Render();
 	
 	
 	
@@ -271,6 +287,7 @@ void Game::clean() {
 	
 	text[0]->Clean();
 	song->clean();
+	wrongkey->clean();
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();

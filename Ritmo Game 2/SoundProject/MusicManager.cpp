@@ -13,37 +13,15 @@ MusicManager::MusicManager(const char* filename){
 };
 MusicManager::~MusicManager() {};
 
-void MusicManager::load_chunk(const char* filename) {
-    chunk = Mix_LoadWAV(filename);
-    if (chunk == NULL)
-    {
-        printf(Mix_GetError());
-    
-    }
-};
 
-void MusicManager::load_music(const char* filename) {
-    music = Mix_LoadMUS(filename);
-    if (music == NULL)
-    {
-        printf(Mix_GetError());
 
-    }
-
-};
 
 void MusicManager::clean() {
-    Mix_FreeChunk(chunk);
+
     Mix_FreeMusic(music);
     Mix_CloseAudio();
 };
 
-void MusicManager::play_chunk() {
-    if (Mix_PlayChannel(-1, chunk, 0) == -1)
-    {
-        printf(Mix_GetError());
-    }
-};
 
 void MusicManager::pause_music() {
 
@@ -77,3 +55,28 @@ void MusicManager::stop_music() {
     Mix_HaltMusic();
 
 };
+
+
+MusicManagerChunk::MusicManagerChunk(const char* filename) {
+    chunk = Mix_LoadWAV(filename);
+    if (chunk == NULL)
+    {
+        printf(Mix_GetError());
+
+    }
+
+};
+MusicManagerChunk::~MusicManagerChunk() {};
+
+void MusicManagerChunk::clean() {
+    Mix_FreeChunk(chunk);
+    Mix_CloseAudio();
+};
+
+void MusicManagerChunk::play_chunk() {
+    if (Mix_PlayChannel(-1, chunk, 0) == -1)
+    {
+        printf(Mix_GetError());
+    }
+};
+

@@ -1,10 +1,4 @@
-﻿  DrawText.cpp
-  Game.cpp
-C:\Users\aleja\Documents\GitHub\SoundProject\Ritmo Game 2\SoundProject\Game.cpp(1,34): warning C4081: expected 'newline'; found '.'
+﻿  Game.cpp
   main.cpp
-  Object.cpp
-C:\Users\aleja\Documents\GitHub\SoundProject\Ritmo Game 2\SoundProject\Object.cpp(35,16): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  ScoreSystem.cpp
-  TextureM.cpp
   Generating Code...
   SoundProject.vcxproj -> C:\Users\aleja\Documents\GitHub\SoundProject\Ritmo Game 2\Debug\SoundProject.exe
